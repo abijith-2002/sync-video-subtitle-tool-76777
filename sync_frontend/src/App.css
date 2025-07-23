@@ -1,104 +1,200 @@
-/* CSS Variables for Theme Management */
+/* Color variables: set brand palette */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --primary: #1976D2;
+  --secondary: #424242;
+  --accent: #00B8D4;
+  --background: #ffffff;
+  --background-alt: #f6fafc;
+  --border-radius: 13px;
+  --font-family: "Inter", "Arial", sans-serif;
+  --base-shadow: 0 2px 10px 0 rgba(20,30,40,0.04);
+  --border: 1.5px solid #e0e3e6;
+  --upload-bg: #ecf5fa;
+  --upload-active: #B3E5FC;
+  --download-btn: var(--primary);
+  --download-btn-text: #fff;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
-}
-
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+/* Background and typography */
+.main-bg {
+  background: var(--background);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+  font-family: var(--font-family);
+  color: var(--secondary);
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 32px;
+}
+.header {
+  text-align: center;
+  padding: 3rem 1rem 1.8rem 1rem;
+}
+.logo-dot {
+  background: var(--accent);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: -7px;
+  margin-right: 8px;
+}
+.title {
+  color: var(--primary);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.4em;
+  display: inline-block;
+  vertical-align: middle;
+}
+.subtitle {
+  color: var(--secondary);
+  font-size: 1rem;
+  opacity: 0.85;
+  margin-top: 0.1em;
+  font-weight: 400;
+}
+
+/* Drop Area */
+.drop-area {
+  background: var(--upload-bg);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 32px 18px;
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+  transition: background 0.22s;
+  box-shadow: var(--base-shadow);
+  margin-bottom: 2rem;
+  margin-top: 1.8rem;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  flex-direction: column;
 }
-
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.drop-area.active {
+  background: var(--upload-active);
+  border-color: var(--accent);
 }
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
+.drop-text {
+  color: #555;
+  font-size: 0.95em;
+  opacity: 0.7;
+  margin-top: 1.4em;
+}
+.upload-btn {
+  background: var(--primary);
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+  border-radius: 7px;
+  padding: 0.8em 1.3em;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.6em 0.6em 0 0.6em;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background 0.19s;
+  box-shadow: 0 2px 7px -3px var(--primary);
+  outline: none;
+  min-width: 150px;
+  white-space: nowrap;
+}
+.upload-btn:hover, .upload-btn:focus-visible {
+  background: var(--accent);
+  color: var(--secondary);
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.actions {
+  text-align: center;
+  margin-bottom: 1.2em;
+}
+.action-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.08em;
+  font-weight: 600;
+  padding: 0.77em 2.1em;
+  margin: 0 8px 0 2px;
+  cursor: pointer;
+  transition: background 0.19s, opacity 0.19s;
+  box-shadow: 0 2px 10px -3px var(--accent);
+  outline: none;
+}
+.action-btn:disabled {
+  opacity: 0.55;
+  background: var(--primary);
+  cursor: not-allowed;
+}
+.reset-btn {
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 1em;
+  padding: 0.7em 1.55em;
+  font-weight: 400;
+  margin-left: 10px;
+  cursor: pointer;
   opacity: 0.9;
+  transition: background 0.17s, opacity 0.19s;
+  outline: none;
+}
+.reset-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.status-text {
+  text-align: center;
+  margin: 1.1rem auto 1.6rem auto;
+  color: var(--primary);
+  font-size: 1.13em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.download-area {
+  text-align: center;
+  margin-top: 0.8em;
+}
+.download-btn {
+  display: inline-block;
+  background: var(--download-btn);
+  color: var(--download-btn-text);
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 0.77em 2.2em;
+  border-radius: 7px;
+  margin-top: 0.1em;
+  box-shadow: 0 2px 8px -3px var(--primary);
+  transition: background 0.17s, color 0.17s;
+}
+.download-btn:hover {
+  background: var(--accent);
+  color: var(--secondary);
+}
+.footer {
+  text-align: center;
+  color: #ababab;
+  font-size: 0.99em;
+  margin-top: 3em;
+  font-weight: 400;
+  opacity: 0.8;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Responsiveness for mobile */
+@media (max-width: 720px) {
+  .main-bg {
+    padding: 0.5em 0.2em 2em 0.2em;
   }
-  to {
-    transform: rotate(360deg);
+  .drop-area {
+    max-width: 99vw;
+    padding: 24px 3vw;
   }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+  .upload-btn, .action-btn, .reset-btn, .download-btn {
+    font-size: 0.99em;
+    min-width: 110px;
+    padding: 0.68em 1.1em;
   }
 }
